@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct NewsAppApp: App {
+    @State private var isActive = false
     var body: some Scene {
         WindowGroup {
-            ContentView()
+           ContentView()
         }
     }
 }
