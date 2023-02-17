@@ -16,23 +16,28 @@ struct MainScreen: View {
     @StateObject private var mainScreenVM = MainScreenViewModel()
     var body: some View {
         VStack(alignment: .trailing) {
-            SearchBar().padding(.horizontal, 20)
-            ScrollView(.horizontal) {
-                HStack(spacing: 20) {
-                    if mainScreenVM.articles.count > 0 {
-                        ForEach(mainScreenVM.articles) { item in
-                            ListItem(text: item.title)
-                        }
-                    } else {
-                        ProgressView()
-                    }
-
+            SearchBar().padding(.horizontal, 10).padding(.bottom, 30)
+            if mainScreenVM.articles.count > 0 {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20) {
+                            ForEach(mainScreenVM.articles) { item in
+                                HeadLinesItem(article: item).transition(AnyTransition.scale.animation(.spring()))
+                            }
+                        }.padding(.horizontal, 10)
+                }
+            } else {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
                 }
             }
             Spacer()
-        }.onAppear {
-            mainScreenVM.getTopHeadlines()
         }
+        .padding(.top, 30)
+            .onAppear {
+                mainScreenVM.getTopHeadlines()
+            }
     }
 }
 

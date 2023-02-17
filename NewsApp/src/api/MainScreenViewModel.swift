@@ -6,15 +6,21 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct Article: Identifiable {
-    let title: String
     let id = UUID()
+    let title: String
+    let sourceName: String
+    let author: String
+    let description: String
+    let publishedAt: String
+    let urlToImage: String
 }
 
 class MainScreenViewModel: ObservableObject {
     @Published var articles: [Article] = []
-    let API = NewsApi(url: "https://newsapi.org/v2/top-headlines?country=us&category=business")
+    let API = NewsApi(url: "https://newsapi.org/v2/top-headlines?country=ru")
     public func getTopHeadlines() {
         Task {
             await getData()
@@ -24,7 +30,15 @@ class MainScreenViewModel: ObservableObject {
         let data = await API.getData()
         let articlesList = data["articles"].arrayValue
         for item in articlesList {
-            self.articles.append(Article(title: item["title"].stringValue))
+            let title = item["title"].stringValue
+            let sourceName = item["source"]["name"].stringValue
+            let author = item["author"].stringValue
+            let description = item["description"].stringValue
+            let publishedAt = item["publishedAt"].stringValue
+            let urlToImage = item["urlToImage"].stringValue
+            self.articles.append(
+                Article(title: title, sourceName: sourceName, author: author, description: description, publishedAt: publishedAt, urlToImage: urlToImage)
+            )
         }
     }
 }

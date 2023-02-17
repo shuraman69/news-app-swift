@@ -8,14 +8,15 @@
 import SwiftUI
 
 let PrimaryColor = getColor(hexColor: "#0E4C70")
+let PrimaryColorHex = "#0E4C70"
 let TextNoteColor = Color.gray
-func getColor(hexColor: String? = "#CAD454") -> Color? {
-    let color = Color(hex: hexColor!)
+func getColor(hexColor: String? = "#CAD454", alpha: CGFloat = 1.0) -> Color? {
+    let color = Color(hex: hexColor!, alpha: alpha)
     return color ?? .black
 }
 
 extension Color {
-    init?(hex: String) {
+    init?(hex: String, alpha: CGFloat) {
         var localHex = hex.trimmingCharacters(in: .whitespacesAndNewlines)
         localHex = localHex.replacingOccurrences(of: "#", with: "")
 
@@ -24,7 +25,7 @@ extension Color {
         var r: CGFloat = 0.0
         var g: CGFloat = 0.0
         var b: CGFloat = 0.0
-        var a: CGFloat = 1.0
+        var a: CGFloat = alpha
 
         let len = localHex.count
 
