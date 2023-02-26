@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
-
+import Inject
 struct ContentView: View {
+    @ObserveInjection var inject
     var body: some View {
         TabView {
             MainScreen()
@@ -25,7 +26,7 @@ struct ContentView: View {
 //                    Image(systemName: "basket")
 //                    Text("Profile")
 //                }
-        }.accentColor(PrimaryColor)
+        }.accentColor(PrimaryColor).enableInjection()
     }
 }
 

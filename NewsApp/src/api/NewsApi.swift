@@ -17,8 +17,8 @@ class NewsApi {
     init(url: String) {
         self.url = url
     }
-    func getData() async -> JSON {
-        var request = URLRequest(url: URL(string: self.url)!)
+    func getData(query: String? = "") async -> JSON {
+        var request = URLRequest(url: URL(string: self.url + query!)!)
         request.httpMethod = "GET"
         request.addValue(self.API_KEY, forHTTPHeaderField: "Authorization")
         let (data) = try! await URLSession.shared.data(for: request)

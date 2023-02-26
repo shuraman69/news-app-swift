@@ -18,27 +18,34 @@ struct Article: Identifiable {
     let urlToImage: String
 }
 
+func jsonArticlesToStruct(jsonArticles: [JSON]) -> [Article] {
+    var result: [Article] = []
+    for item in jsonArticles {
+        let title = item["title"].stringValue
+        let sourceName = item["source"]["name"].stringValue
+        let author = item["author"].stringValue
+        let description = item["description"].stringValue
+        let publishedAt = item["publishedAt"].stringValue
+        let urlToImage = item["urlToImage"].stringValue
+        result.append(Article(title: title, sourceName: sourceName, author: author, description: description, publishedAt: publishedAt, urlToImage: urlToImage))
+    }
+    return result
+}
+
+@MainActor
 class MainScreenViewModel: ObservableObject {
     @Published var articles: [Article] = []
-    let API = NewsApi(url: "https://newsapi.org/v2/top-headlines?country=ru")
-    public func getTopHeadlines() {
-        Task {
-            await getData()
-        }
+    @Published var loading = false
+    private let API = NewsApi(url: "https://newsapi.org/v2/top-headlines?country=ru")
+    public func getTopHeadlines() async {
+        loading = true
+        let result = await getData()
+        self.articles = result
+        loading = false
     }
-    private func getData() async {
+    private func getData() async -> [Article] {
         let data = await API.getData()
         let articlesList = data["articles"].arrayValue
-        for item in articlesList {
-            let title = item["title"].stringValue
-            let sourceName = item["source"]["name"].stringValue
-            let author = item["author"].stringValue
-            let description = item["description"].stringValue
-            let publishedAt = item["publishedAt"].stringValue
-            let urlToImage = item["urlToImage"].stringValue
-            self.articles.append(
-                Article(title: title, sourceName: sourceName, author: author, description: description, publishedAt: publishedAt, urlToImage: urlToImage)
-            )
-        }
+        return jsonArticlesToStruct(jsonArticles: articlesList)
     }
 }

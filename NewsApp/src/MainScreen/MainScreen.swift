@@ -6,38 +6,54 @@
 //
 
 import SwiftUI
-struct Item: Identifiable  {
-    let id = UUID()
-    let text: String
-}
 
 struct MainScreen: View {
-    let list = [Item(text: "1"), Item(text: "1")]
     @StateObject private var mainScreenVM = MainScreenViewModel()
     var body: some View {
-        VStack(alignment: .trailing) {
-            SearchBar().padding(.horizontal, 10).padding(.bottom, 30)
-            if mainScreenVM.articles.count > 0 {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                            ForEach(mainScreenVM.articles) { item in
-                                HeadLinesItem(article: item).transition(AnyTransition.scale.animation(.spring()))
+        NavigationView {
+            VStack(alignment: .trailing) {
+                ScrollView(.vertical) {
+                    ZStack {
+                        if mainScreenVM.loading {
+                            HStack {
+                                ProgressView().tint(.white)
                             }
-                        }.padding(.horizontal, 10)
-                }
-            } else {
-                HStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
+                        }
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                if mainScreenVM.articles.count > 0 {
+                                    ForEach(mainScreenVM.articles) { item in
+                                        NavigationLink(destination: DetailScreen(article: item).navigationTitle(item.title), label: {
+                                            HeadLinesItem(article: item)
+                                        })
+                                        .buttonStyle(.plain)
+                                        .transition(AnyTransition.scale.animation(.spring()))
+                                    }
+                                }
+                            }.padding(.horizontal, 10)
+                        }
+                    }
+                    VStack {
+                        SearchCategoryButtons().padding(.vertical, 20)
+                        if mainScreenVM.articles.count > 0 {
+                            ForEach(mainScreenVM.articles) { item in
+                                NavigationLink(destination: DetailScreen(article: item).navigationTitle(item.title), label: {
+                                    SmallNewsItem()
+                                })
+                                .buttonStyle(.plain)
+                                .transition(AnyTransition.scale.animation(.easeInOut(duration: 0.4)))
+                            }
+                        }
+                    }.padding(.horizontal, 10)
                 }
             }
-            Spacer()
-        }
-        .padding(.top, 30)
+            .padding(.top, 30)
             .onAppear {
-                mainScreenVM.getTopHeadlines()
+                Task {
+                    await mainScreenVM.getTopHeadlines()
+                }
             }
+        }
     }
 }
 

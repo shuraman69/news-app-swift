@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A2C366C29ABF5C20044D309 /* DEFAULTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2C366B29ABF5C20044D309 /* DEFAULTS.swift */; };
+		5A2C366E29ABF6850044D309 /* SearchCategoryButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2C366D29ABF6850044D309 /* SearchCategoryButtons.swift */; };
+		5A9D5051299FC92D000FC18A /* SmallNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D5050299FC92C000FC18A /* SmallNewsItem.swift */; };
+		5AAD8FC3299F7DA600AE35EB /* DetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAD8FC2299F7DA600AE35EB /* DetailScreen.swift */; };
+		5AB5F38129A2146200CF4FD0 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = 5AB5F38029A2146200CF4FD0 /* Inject */; };
+		5AB5F38429A21F3700CF4FD0 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5AB5F38329A21F3700CF4FD0 /* SkeletonUI */; };
 		5AC07346299EB27A00AC8D51 /* NewsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC07345299EB27A00AC8D51 /* NewsAppApp.swift */; };
 		5AC07348299EB27A00AC8D51 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC07347299EB27A00AC8D51 /* ContentView.swift */; };
 		5AC0734A299EB27C00AC8D51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AC07349299EB27C00AC8D51 /* Assets.xcassets */; };
@@ -23,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A2C366B29ABF5C20044D309 /* DEFAULTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEFAULTS.swift; sourceTree = "<group>"; };
+		5A2C366D29ABF6850044D309 /* SearchCategoryButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCategoryButtons.swift; sourceTree = "<group>"; };
+		5A9D5050299FC92C000FC18A /* SmallNewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallNewsItem.swift; sourceTree = "<group>"; };
+		5AAD8FC2299F7DA600AE35EB /* DetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreen.swift; sourceTree = "<group>"; };
 		5AC07342299EB27A00AC8D51 /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC07345299EB27A00AC8D51 /* NewsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppApp.swift; sourceTree = "<group>"; };
 		5AC07347299EB27A00AC8D51 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,12 +55,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AC07355299EB29200AC8D51 /* SwiftyJSON in Frameworks */,
+				5AB5F38429A21F3700CF4FD0 /* SkeletonUI in Frameworks */,
+				5AB5F38129A2146200CF4FD0 /* Inject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AAD8FC0299F7D9000AE35EB /* DetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				5AAD8FC2299F7DA600AE35EB /* DetailScreen.swift */,
+			);
+			path = DetailScreen;
+			sourceTree = "<group>";
+		};
 		5AC07339299EB27A00AC8D51 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +111,7 @@
 		5AC07356299EBBBE00AC8D51 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				5AAD8FC0299F7D9000AE35EB /* DetailScreen */,
 				5AC07366299EDB3300AC8D51 /* api */,
 				5AC07363299ED50E00AC8D51 /* components */,
 				5AC07360299EC76900AC8D51 /* MainScreen */,
@@ -104,6 +125,7 @@
 			children = (
 				5AC0735C299EC62A00AC8D51 /* SIZE.swift */,
 				5AC0735E299EC6D900AC8D51 /* COLORS.swift */,
+				5A2C366B29ABF5C20044D309 /* DEFAULTS.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -139,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				5AEE3DA6299F512500A90D50 /* HeadLinesItem.swift */,
+				5A9D5050299FC92C000FC18A /* SmallNewsItem.swift */,
+				5A2C366D29ABF6850044D309 /* SearchCategoryButtons.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -161,6 +185,8 @@
 			name = NewsApp;
 			packageProductDependencies = (
 				5AC07354299EB29200AC8D51 /* SwiftyJSON */,
+				5AB5F38029A2146200CF4FD0 /* Inject */,
+				5AB5F38329A21F3700CF4FD0 /* SkeletonUI */,
 			);
 			productName = NewsApp;
 			productReference = 5AC07342299EB27A00AC8D51 /* NewsApp.app */;
@@ -192,6 +218,8 @@
 			mainGroup = 5AC07339299EB27A00AC8D51;
 			packageReferences = (
 				5AC07353299EB29200AC8D51 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				5AB5F37F29A2146200CF4FD0 /* XCRemoteSwiftPackageReference "Inject" */,
+				5AB5F38229A21F3700CF4FD0 /* XCRemoteSwiftPackageReference "SkeletonUI" */,
 			);
 			productRefGroup = 5AC07343299EB27A00AC8D51 /* Products */;
 			projectDirPath = "";
@@ -220,14 +248,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AC0735D299EC62A00AC8D51 /* SIZE.swift in Sources */,
+				5A2C366E29ABF6850044D309 /* SearchCategoryButtons.swift in Sources */,
 				5AC0735F299EC6D900AC8D51 /* COLORS.swift in Sources */,
 				5AEE3DA7299F512500A90D50 /* HeadLinesItem.swift in Sources */,
 				5AC0736A299EDE9300AC8D51 /* SearchBarViewModel.swift in Sources */,
 				5AC07362299EC78700AC8D51 /* MainScreen.swift in Sources */,
 				5AC07348299EB27A00AC8D51 /* ContentView.swift in Sources */,
 				5AC0736C299EDEEB00AC8D51 /* MainScreenViewModel.swift in Sources */,
+				5A9D5051299FC92D000FC18A /* SmallNewsItem.swift in Sources */,
 				5AC07346299EB27A00AC8D51 /* NewsAppApp.swift in Sources */,
+				5A2C366C29ABF5C20044D309 /* DEFAULTS.swift in Sources */,
 				5AC07365299ED52200AC8D51 /* SearchBar.swift in Sources */,
+				5AAD8FC3299F7DA600AE35EB /* DetailScreen.swift in Sources */,
 				5AC07368299EDB4200AC8D51 /* NewsApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +402,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shuraman.newsapp.NewsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -431,6 +467,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5AB5F37F29A2146200CF4FD0 /* XCRemoteSwiftPackageReference "Inject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzysztofzablocki/Inject.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.3;
+			};
+		};
+		5AB5F38229A21F3700CF4FD0 /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CSolanaM/SkeletonUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		5AC07353299EB29200AC8D51 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -442,6 +494,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5AB5F38029A2146200CF4FD0 /* Inject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AB5F37F29A2146200CF4FD0 /* XCRemoteSwiftPackageReference "Inject" */;
+			productName = Inject;
+		};
+		5AB5F38329A21F3700CF4FD0 /* SkeletonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AB5F38229A21F3700CF4FD0 /* XCRemoteSwiftPackageReference "SkeletonUI" */;
+			productName = SkeletonUI;
+		};
 		5AC07354299EB29200AC8D51 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5AC07353299EB29200AC8D51 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
